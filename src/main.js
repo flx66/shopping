@@ -12,13 +12,20 @@ import VueResource from 'vue-resource'
 //2.2 安装 vue-resource
 Vue.use(VueResource) 
 //注册vuex
+Vue.http.options.emulateJSON = true
+//设置请求根路径
+Vue.http.options.root = ''
+
 import Vuex from 'vuex'
 Vue.use(Vuex)
 
-var car = JSON.parse(localStorage.getItem('car') || '[]')
+var car = JSON.parse(sessionStorage.getItem('car') || '[]')
 var store = new Vuex.Store({
     state: { // this.$store.state.***
-        car: car //存储购物车中商品的数据，用一个数组存储起来 { id:商品的id，count：要购买的数量，price：商品的单价，selected：false}
+        car: car ,//存储购物车中商品的数据，用一个数组存储起来 { id:商品的id，count：要购买的数量，price：商品的单价，selected：false}
+        str:''
+
+
     },
     mutations: { // this.$store.commit('方法的名称','按需传递唯一的参数')
         addToCar(state, goodsinfo) {
@@ -36,8 +43,8 @@ var store = new Vuex.Store({
                 state.car.push(goodsinfo)
             }
 
-            //当更新 car 之后， 把car数组存储到本地的localStorage中
-            localStorage.setItem('car', JSON.stringify(state.car))
+            //当更新 car 之后， 把car数组存储到本地的sessionStorage中
+            sessionStorage.setItem('car', JSON.stringify(state.car))
         },
         updateGoodsInfo(state, goodsinfo) {
             state.car.some(item => {
@@ -46,7 +53,7 @@ var store = new Vuex.Store({
                     return true
                 }
             })
-        localStorage.setItem('car', JSON.stringify(state.car))    
+        sessionStorage.setItem('car', JSON.stringify(state.car))    
         },
         removeFormCar(state, id) {
             state.car.some((item, i) => {
@@ -55,7 +62,7 @@ var store = new Vuex.Store({
                     return ture 
                 }
             })
-            localStorage.setItem('car', JSON.stringify(state.car))
+            sessionStorage.setItem('car', JSON.stringify(state.car))
         },
         updateGoodsSelected(state, info) {
             state.car.some(item => {
@@ -63,7 +70,7 @@ var store = new Vuex.Store({
                     item.selected =info.selected
                 }
             })
-            localStorage.setItem('car', JSON.stringify(state.car))
+            sessionStorage.setItem('car', JSON.stringify(state.car))
         }
     },
     getters: { // this.$store.getters.***
@@ -115,7 +122,8 @@ import './filters'
 
 
 //导入Mint-UI组件
-import { Header, Swipe, SwipeItem, Button,Switch } from 'mint-ui'
+import { Header, Swipe, SwipeItem, Button,Switch} from 'mint-ui'
+
 
 
 Vue.component(Switch.name, Switch)

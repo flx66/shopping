@@ -1,5 +1,5 @@
 <template>
-    <div class="goodsinfo-container" >
+    <div class="goodsinfo-container">
         <transition @before-enter="beforeEnter" @enter="enter" @after-enter="afterEnter">
             <div class="ball" v-show="ballFlag" ref="ball"></div>
         </transition>
@@ -27,7 +27,7 @@
                     <p>
                         <mt-button type="primary" size="small">立即购买</mt-button>
                         <mt-button type="danger" size="small" @click="addToShopCar">加入购物车</mt-button>
-
+                        
                     </p>
                 </div>
             </div>
@@ -49,17 +49,20 @@
             </div>
         </div>
     </div>
+    
 </template>
 
 <script>
     import swiper from '../sub-components/swiper.vue';
     //导入数字选择框组件
     import numbox from '../sub-components/goodsinfo_numbox.vue'
+    import { Toast } from 'mint-ui'
     export default {
         data() {
             return {
+             
                 id: this.$route.params.id,
-                i: this.$route.params.id-89,
+                i: this.$route.params.id - 89,
                 goodsinfo: [{
                     id: 89,
                     title: "华为 Nova7 Pro",
@@ -90,8 +93,7 @@
                     address: "安徽"
 
 
-                }
-            ],
+                }],
                 lunbotu: [{
                         img: "https://x0.ifengimg.com/res/2020/EF8E5A33847687A1376CDE3928CCE538BEC3F916_size102_w810_h1200.jpeg"
                     },
@@ -144,8 +146,9 @@
                 })
             },
             addToShopCar() {
-                if(this.goodsinfo[this.i].address === "北京"){
-                    alert("该地区存在疫情")
+                
+                if (this.goodsinfo[this.i].address === "北京") {
+                   Toast("该地区存在疫情")
                 }
                 //添加到购物车
                 this.ballFlag = !this.ballFlag;
@@ -153,10 +156,11 @@
                 var goodsinfo = {
                     id: this.id,
                     count: this.selectedCount,
-                    price : this.goodsinfo[this.i].sell_price,
+                    price: this.goodsinfo[this.i].sell_price,
                     selected: true
                 };
-                this.$store.commit("addToCar",goodsinfo);
+                this.$store.commit("addToCar", goodsinfo);
+               
 
             },
             beforeEnter(el) {
@@ -199,6 +203,7 @@
             font-size: 16px;
             font-weight: bold;
         }
+        
 
         .mui-card-footer {
             display: block;
@@ -218,5 +223,7 @@
             top: 385px;
             left: 146px;
         }
+       
     }
+     
 </style>

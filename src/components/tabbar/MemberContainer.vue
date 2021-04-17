@@ -8,7 +8,9 @@
                     alt="">
             </div>
             <div style="margin-left:15px ;padding-top:7px">
-                <span  @click="login" > <router-link to="/member/login">登录/注册</router-link></span>
+                <span @click="login">
+                    <router-link to="/member/login">登录/注册{{this.$store.str}}</router-link>
+                </span>
                 <p>暂未绑定手机号</p>
             </div>
         </div>
@@ -38,52 +40,53 @@
             <ul class="mui-table-view mui-table-view-striped mui-table-view-condensed">
                 <li class="mui-table-view-cell">
                     <div class="mui-table">
-                            <span class="mui-icon mui-icon-chat" style="color:darkgray"></span>
+                        <span class="mui-icon mui-icon-chat" style="color:darkgray"></span>
                         <span style="margin-left:6px">我的消息</span>
                     </div>
                 </li>
                 <li class="mui-table-view-cell">
                     <div class="mui-table">
-                            <span class="mui-icon-extra mui-icon-extra-grech" style="color:cornflowerblue"></span>
+                        <span class="mui-icon-extra mui-icon-extra-grech" style="color:cornflowerblue"></span>
                         <span style="margin-left:6px">积分商城</span>
                     </div>
                 </li>
                 <li class="mui-table-view-cell">
                     <div class="mui-table">
-                            <span class="mui-icon-extra mui-icon-extra-comment" style="color:burlywood; width:25px"></span>
+                        <span class="mui-icon-extra mui-icon-extra-comment" style="color:burlywood; width:25px"></span>
                         <span style="margin-left:6px">会员卡</span>
                     </div>
                 </li>
             </ul>
             <ul class="mui-table-view mui-table-view-striped mui-table-view-condensed" style="margin-top: 20px">
-                <li class="mui-table-view-cell" >
+                <li class="mui-table-view-cell">
                     <div class="mui-table">
-                            <span class="mui-icon mui-icon-person"></span>
+                        <span class="mui-icon mui-icon-person"></span>
                         <span style="margin-left:6px">个人信息</span>
                     </div>
                 </li>
                 <li class="mui-table-view-cell">
                     <div class="mui-table">
-                            <span class="mui-icon mui-icon-pulldown" style="color:darkgray"></span>
+                        <span class="mui-icon mui-icon-pulldown" style="color:darkgray"></span>
                         <span style="margin-left:6px">下载app</span>
+                        
                     </div>
+                    
                 </li>
             </ul>
         </div>
         <!-- 3.封装成一个整体 -->
-      
+
     </div>
-    
+
 </template>
 
 <script>
     export default {
 
-        components: {
-
-        },
+        
         data: function () {
             return {
+                
                 orderList: [{
                         icon: '#order',
                         iconColor: '#ff8198',
@@ -110,16 +113,22 @@
                         iconColor: '#ff8198',
                         info: '下载购物APP'
                     },
-                ]
+                ],
+                
             }
         },
-        mounted: function () {},
+        created() {
+            
+        },
         methods: {
-            login(){
+            login() {
                 console.log(1)
             }
         },
+        
+        
     }
+    
 </script>
 
 <style scoped>
@@ -134,8 +143,9 @@
         align-items: center;
 
     }
-    #zi{
-        padding-right:30px;
+
+    #zi {
+        padding-right: 30px;
     }
 
     #profile {
@@ -183,5 +193,4 @@
     .service-list {
         margin-top: 12px;
     }
-    
 </style>

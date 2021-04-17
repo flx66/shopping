@@ -37,7 +37,7 @@ export default{
             "market_price": 3699,
             "stock_quantity": 99} ,
             {"id": 90,
-            "title": "华为 Mate 90",
+            "title": "华为 mate 90",
             "add_time": "2021-04-19T16:23:02.000Z",
             "click": 0,
             "img_url": "https://consumer.huawei.com/content/dam/huawei-cbg-site/greate-china/cn/mkt/pdp/phones/mate-x2/list/img-pink-v1.png",
